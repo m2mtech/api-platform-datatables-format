@@ -1,0 +1,51 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Symfony ${{ matrix.symfony }} (PHP ${{ matrix.php }} / ${{ matrix.dependencies }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: ["7.2", "7.3", "7.4", "8.0", "8.1"]
+        symfony: ["5.4", "6.0"]
+        dependencies: [highest]
+        include:
+          - php: "7.2"
+            symfony: "5.4"
+            dependencies: lowest
+            os: ubuntu-latest
+        exclude:
+          - php: "7.2"
+            symfony: "6.0"
+          - php: "7.3"
+            symfony: "6.0"
+          - php: "7.4"
+            symfony: "6.0"
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: flex
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Install dependencies
+        env:
+          SYMFONY_REQUIRE: "${{ matrix.symfony }}.*"
+        uses: ramsey/composer-install@v1
+        with:
+          dependency-versions: ${{ matrix.dependencies }}
+
+      - name: Execute tests
+        run: vendor/bin/phpunit

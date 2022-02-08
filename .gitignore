@@ -1,0 +1,6 @@
+.idea
+ansible
+vendor
+*/.ecs_cache
+*/composer.lock
+docker-compose.*.yml
