@@ -20,7 +20,7 @@ If you are not using Flex enable the bundle:
 
 return [
     // ...
-    M2MTech\ApiPlatformDatatablesFormat\M2MApiPlatformDatatablesFormatBundle::class => ['all' => true],
+    M2MTech\ApiPlatformDatatablesFormat\ApiPlatformDatatablesFormatBundle::class => ['all' => true],
 ];
 ```
 
