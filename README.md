@@ -26,6 +26,76 @@ return [
 
 ## Usage
 
+Enable the datatables format:
+
+```yaml
+# config/packages/api_platform.yaml
+api_platform:
+    formats:
+        datatables: [ 'application/vnd.datatables+json' ]
+```
+
+### Pagination
+
+The package rewrites the query parameters `start` and `length` from [datatables](https://datatables.net/manual/server-side) to `page` and `itemsPerPage` or whatever you have set as `page_parameter_name` and `items_per_page_parameter_name` for the [API Platform](https://api-platform.com/docs/core/pagination). 
+
+e.g.:
+```diff
+- /api/offers?draw=1&start=0&length=10
++ /api/offers?draw=1&page=1&itemsPerPage=10
+```
+
+Pagination is enabled by default in the [API Platform](https://api-platform.com/docs/core/pagination). 
+
+
+### Sorting 
+
+The package rewrites the query parameters `columns` and `order` from [datatables](https://datatables.net/manual/server-side) to `order` or whatever you have set as `order_parameter_name` for the [API Platform](https://api-platform.com/docs/core/pagination).
+
+e.g.:
+```diff
+- /api/offers?draw=2&columns[0][data]=name&columns[1][data]=price&order[0][column]=1&order[0][dir]=desc
++ /api/offers?draw=2&order[email]=desc
+```
+
+You need to enable sorting for the [API Platform](https://api-platform.com/docs/core/pagination).
+
+e.g. in your entity definition:
+```php
+#[ApiFilter(OrderFilter::class, properties: ['name', 'price'])]
+```
+
+### Search
+
+The package rewrites the query parameters `columns` and `search` from [datatables](https://datatables.net/manual/server-side) to `or` for the [Filter logic for API Platform](https://github.com/metaclass-nl/filter-bundle).
+
+e.g.:
+````diff
+- /api/offers?draw=3&columns[0][data]=name&columns[1][data]=description&search[value]=shirt 
++ /api/offers?draw=2&or[name]=shirt&or[desciption]=shirt
+````
+
+You need to install [Filter logic for API Platform](https://github.com/metaclass-nl/filter-bundle), an equivalent bundle or your own filter for this functionality, e.g.:
+
+```bash
+composer require metaclass-nl/filter-bundle "dev-master"
+```
+
+You need also to enable the search filter for the [API Platform](https://api-platform.com/docs/core/pagination).
+
+e.g. in your entity definition:
+```php
+#[ApiFilter(SearchFilter::class, properties: ['name' => 'partial', 'description' => 'partial'])]
+#[ApiFilter(FilterLogic::class)]
+```
+
+
+### Output
+
+Including the data, the output contains `recordsTotal` and `recordsFiltered` (which are always the same) as well as the `draw` parameter from the query. 
+
+
+### 
 
 ## Testing
 

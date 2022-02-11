@@ -5,4 +5,4 @@ parameters:
     - tests
 
   ignoreErrors:
-      - '#Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::children\(\).#'
+    - '#Method M2MTech\\ApiPlatformDatatablesFormat\\Tests\\.*Provider\(\) return type has no value type specified in iterable type iterable.#'
