@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
-class ApiPlatformDatatablesFormatExtension extends Extension
+class M2MTechApiPlatformDatatablesFormatExtension extends Extension
 {
     /**
      * @param array<string,string> $configs
@@ -27,6 +27,6 @@ class ApiPlatformDatatablesFormatExtension extends Extension
 
     public function getAlias(): string
     {
-        return 'm2m_api_platform_datatables_format';
+        return 'm2mtech_api_platform_datatables_format';
     }
 }

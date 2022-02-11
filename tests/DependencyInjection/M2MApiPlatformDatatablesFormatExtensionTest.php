@@ -12,7 +12,7 @@ namespace M2MTech\ApiPlatformDatatablesFormat\Tests\DependencyInjection;
 use ApiPlatform\Core\Api\ResourceClassResolverInterface;
 use ApiPlatform\Core\Metadata\Resource\Factory\ResourceMetadataFactoryInterface;
 use ApiPlatform\Core\Serializer\JsonEncoder;
-use M2MTech\ApiPlatformDatatablesFormat\DependencyInjection\ApiPlatformDatatablesFormatExtension;
+use M2MTech\ApiPlatformDatatablesFormat\DependencyInjection\M2MTechApiPlatformDatatablesFormatExtension;
 use M2MTech\ApiPlatformDatatablesFormat\EventSubscriber\DatatablesParameterSubscriber;
 use M2MTech\ApiPlatformDatatablesFormat\Serializer\DatatablesCollectionNormalizer;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +22,7 @@ class M2MApiPlatformDatatablesFormatExtensionTest extends TestCase
 {
     public function testLoad(): void
     {
-        $extension = new ApiPlatformDatatablesFormatExtension();
+        $extension = new M2MTechApiPlatformDatatablesFormatExtension();
         $container = new ContainerBuilder();
         $extension->load([], $container);
 
@@ -52,7 +52,7 @@ class M2MApiPlatformDatatablesFormatExtensionTest extends TestCase
 
     public function testGetAlias(): void
     {
-        $extension = new ApiPlatformDatatablesFormatExtension();
-        $this->assertSame('m2m_api_platform_datatables_format', $extension->getAlias());
+        $extension = new M2MTechApiPlatformDatatablesFormatExtension();
+        $this->assertSame('m2mtech_api_platform_datatables_format', $extension->getAlias());
     }
 }
