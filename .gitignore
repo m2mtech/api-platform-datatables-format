@@ -1,8 +1,8 @@
 .idea
 ansible
 vendor
-*/.ecs_cache
-*/.phpunit.result.cache
-*/composer.lock
+.ecs_cache
+.phpunit.result.cache
+composer.lock
 docker-compose.*.yml
 
