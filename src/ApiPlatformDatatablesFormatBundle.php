@@ -12,7 +12,7 @@ namespace M2MTech\ApiPlatformDatatablesFormat;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class M2MApiPlatformDatatablesFormatBundle extends Bundle
+class ApiPlatformDatatablesFormatBundle extends Bundle
 {
     public function getContainerExtension(): ?ExtensionInterface
     {

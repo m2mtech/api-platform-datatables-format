@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
-class M2MApiPlatformDatatablesFormatExtension extends Extension
+class ApiPlatformDatatablesFormatExtension extends Extension
 {
     /**
      * @param array<string,string> $configs
